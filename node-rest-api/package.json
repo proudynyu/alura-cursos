@@ -4,7 +4,9 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node-dev --respawn ./src/index.ts --transpile-only --ignore-watch"
+    "start": "ts-node-dev --respawn ./src/index.ts --transpile-only --ignore-watch",
+    "knex:migrate": "knex migrate:latest --knexfile ./knexfile.ts",
+    "knex:seed": "knex seed:run --knexfile ./knexfile.ts"
   },
   "author": "Igor Becker",
   "license": "MIT",

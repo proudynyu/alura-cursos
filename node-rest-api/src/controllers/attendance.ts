@@ -1,25 +1,61 @@
-import {Request, Response} from 'express'
+import { Request, Response } from "express";
+import connection from "../data/connection";
 
 interface CreateAttendance {
-  teste: string
+  client: string;
+  pet: string;
+  service: string;
+  status: string;
+  observations: string;
 }
 
 export default {
-  index(req: Request, res: Response) {
-    return res.json({
-      msg: 'Success',
-      status: 200,
-      locals: {
-        end: '',
-        num: 0
-      }
-    })
+  async index(req: Request, res: Response) {
+    const trx = await connection.transaction();
+    try {
+      const getAttendance = await trx("attendance").select("*");
+
+      return res.json({
+        getAttendance,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   },
-  create(req: Request, res: Response) {
-    const { teste } = req.body as CreateAttendance
-    return res.json({
-      status: 200,
-      message: teste
-    })
+  async create(req: Request, res: Response) {
+    const {
+      client,
+      pet,
+      service,
+      status,
+      observations,
+    } = req.body as CreateAttendance;
+
+    try {
+      const attendance = {
+        client,
+        pet,
+        service,
+        status,
+        observations,
+      };
+
+      const trx = await connection.transaction();
+      const insertAttendance = await trx("attendance").insert(attendance);
+
+      await trx.commit()
+
+      return res.json({
+        id: insertAttendance[0],
+        status: 200,
+      });
+      
+    } catch (error) {
+      console.log(error);
+      res.json({
+        status: 400,
+        msg: error,
+      });
+    }
   },
-}
+};

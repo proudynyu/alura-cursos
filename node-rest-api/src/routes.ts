@@ -3,7 +3,7 @@ import attendance from './controllers/attendance'
 
 const route = Router()
 
-route.get('/', attendance.index)
-route.post('/', attendance.create)
+route.get('/api/v1/attendance', attendance.index)
+route.post('/api/v1/attendance', attendance.create)
 
 export default route
