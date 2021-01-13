@@ -1,25 +1,33 @@
 import { Request, Response } from "express";
-import connection from "../data/connection";
+import connection from "../data/connection"
 
 interface CreateAttendance {
   client: string;
   pet: string;
   service: string;
   status: string;
+  date: string;
   observations: string;
+  created_at: number;
 }
 
 export default {
   async index(req: Request, res: Response) {
     const trx = await connection.transaction();
     try {
-      const getAttendance = await trx("attendance").select("*");
+      const getAttendance: Array<CreateAttendance> = await trx("attendance").select("*");
 
-      return res.json({
-        getAttendance,
-      });
+      const responseAttendance = getAttendance?.map(attendance => {
+        const date = new Date(attendance.created_at)
+        return {
+          ...attendance,
+          created_at: date.toLocaleString()
+        }
+      })
+      return res.status(200).json(responseAttendance);
     } catch (e) {
       console.log(e);
+      return res.status(400)
     }
   },
   async create(req: Request, res: Response) {
@@ -29,6 +37,7 @@ export default {
       service,
       status,
       observations,
+      date
     } = req.body as CreateAttendance;
 
     try {
@@ -38,6 +47,7 @@ export default {
         service,
         status,
         observations,
+        date
       };
 
       const trx = await connection.transaction();
@@ -45,14 +55,14 @@ export default {
 
       await trx.commit()
 
-      return res.json({
+      return res.status(200).json({
         id: insertAttendance[0],
         status: 200,
       });
       
     } catch (error) {
       console.log(error);
-      res.json({
+      res.status(400).json({
         status: 400,
         msg: error,
       });

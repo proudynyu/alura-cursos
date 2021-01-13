@@ -6,8 +6,10 @@ export async function up(knex: Knex) {
     table.string('client', 50).notNullable(),
     table.string('pet', 20).notNullable(),
     table.string('service', 20).notNullable(),
+    table.string('date').notNullable(),
     table.string('status', 20).notNullable(),
-    table.text('observations')
+    table.text('observations'),
+    table.dateTime('created_at').defaultTo(Date.now())
   })
 }
 
