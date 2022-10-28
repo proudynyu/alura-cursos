@@ -1,0 +1,15 @@
+button {
+  padding: 1rem;
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 8px;
+  background-color: rgb(201, 53, 53);
+  font-size: 1rem;
+  color: white;
+  border: 0;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+}

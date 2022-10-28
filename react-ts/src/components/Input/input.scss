@@ -1,0 +1,23 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  label {
+    margin-bottom: 0.5rem;
+  }
+
+  input {
+    height: 40px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border: 0;
+  }
+}
+
+.input-container + .input-container {
+  margin-top: 1rem;
+}
