@@ -1,3 +1,7 @@
 export class Client {
-  constructor(private name: string, private cpf: number) {}
+  constructor(private _name: string, private _cpf: number) {}
+
+  get cpf() {
+    return this._cpf
+  }
 }
