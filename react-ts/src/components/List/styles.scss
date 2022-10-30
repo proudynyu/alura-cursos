@@ -1,0 +1,94 @@
+aside {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  background-color: var(--bg-color-secondary);
+  border: 1px solid var(--bg-color-secondary);
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  justify-content: flex-start;
+
+  ul {
+    list-style: none;
+    width: 100%;
+
+    li:first-child {
+      margin-top: 1rem;
+    }
+
+    li {
+      width: 98%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      span {
+        display: block;
+      }
+    }
+
+    li + li {
+      margin-top: 0.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    & {
+      margin-top: 0;
+      width: 50%;
+      margin-left: 0.25rem;
+    }
+  }
+}
+
+.list {
+  height: 305px;
+  overflow-y: auto;
+}
+
+.list::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 8px;
+  background-color: var(--bg-color-terciary);
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: var(--bg-color-primary);
+  border-radius: 8px;
+}
+
+.list::-webkit-scrollbar-track {
+  color: red;
+}
+
+.list-item {
+  background-color: var(--bg-color-terciary);
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: 0.2s ease;
+  border: 1px solid transparent;
+
+  &:hover {
+    transform: translateY(-2%);
+    border-color: white;
+  }
+
+  span {
+    display: inline;
+  }
+
+  .list-remove {
+    margin-left: 1rem;
+    cursor: pointer;
+  }
+
+  .list-add {
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

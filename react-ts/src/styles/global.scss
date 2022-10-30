@@ -4,18 +4,50 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-color-primary: rgb(11, 12, 25);
+  --bg-color-secondary: rgb(21, 22, 47);
+  --bg-color-terciary: rgb(36, 38, 80);
+  --bg-color-purple: rgb(61, 0, 118);
+  --text-color: white;
+
+}
+
 body {
   width: 100vw;
   height: 100vh;
-  background-color: rgb(11, 12, 25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: var(--bg-color-primary);
 }
 
-button,
-a {
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  @media (min-width: 768px) {
+    & {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+button, a {
   cursor: pointer;
+}
+
+h1, h2, h3, p, span, li, label, input{
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3 {
+  font-weight: bold;
+}
+
+p, span, li {
+  font-weight: normal;
 }
 
 .container {
@@ -24,25 +56,45 @@ a {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  color: white;
+  color: var(--text-color);
   max-width: 800px;
   width: 100%;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
 
   .form-container {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .timer {
     border-radius: 8px;
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem 1rem;
-    border: 1px solid rgb(21, 22, 47);
+    padding: 1rem;
+    border: 1px solid var(--bg-color-secondary);
+    background-color: var(--bg-color-secondary);
     margin-top: 1rem;
     min-height: 60px;
+
+    h3 {
+      margin-top: 0.5rem;
+
+      span {
+        color: rgb(201, 201, 201);
+      }
+    }
+
+    button {
+      font-size: 20px;
+    }
   }
 
   @media (min-width: 768px) {

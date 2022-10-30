@@ -1,0 +1,22 @@
+form {
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--bg-color-secondary);
+  border: 1px solid var(--bg-color-secondary);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    & {
+      width: 50%;
+      margin-right: 0.25rem;
+    }
+  }
+}

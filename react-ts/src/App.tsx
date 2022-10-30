@@ -1,15 +1,20 @@
 import { Form } from "./components/Form";
 import { List } from "./components/List";
+import { Timer } from "./components/Timer";
+import { ItemContextProvider } from "./context/item-context";
 
 function App() {
   return (
-    <div className="container">
-      <div className="form-container">
-        <Form />
-        <List />
+    <ItemContextProvider>
+      <div className="container">
+        <h1>Estudos do dia</h1>
+        <div className="form-container">
+          <Form />
+          <List />
+        </div>
+        <Timer />
       </div>
-      <div className="timer"></div>
-    </div>
+    </ItemContextProvider>
   );
 }
 
