@@ -1,43 +1,33 @@
-import { createContext, FC, useContext, useEffect, useState } from "react";
-
-export interface ItemsProps {
-  id: number;
-  title: string;
-  time: string;
-}
-
-interface ItemContextProps {
-  items: ItemsProps[];
-  selectedItem: ItemsProps;
-  handleSelectedItem(item: ItemsProps): void;
-  handleAddItem(item: ItemsProps): void;
-  handleRemoveItem(item: ItemsProps): void;
-}
-
-interface ItemContextProviderProps {
-  children?: React.ReactElement;
-}
+import { createContext, FC, useContext, useState } from "react";
 
 const ItemContext = createContext<ItemContextProps | null>(null);
 
+/**
+ * @export
+ * @description Context provider for the Item Context
+ * @param children React Elements components to be render insider the Item Context
+ * @version 1.0.0
+ */
 export const ItemContextProvider: FC<ItemContextProviderProps> = ({
   children,
 }) => {
-  const [listItems, setListItems] = useState<ItemsProps[]>([] as ItemsProps[]);
-  const [selectedItem, setSelectedItem] = useState<ItemsProps>(
-    {} as ItemsProps
+  const [listItems, setListItems] = useState<ItemListProps[]>(
+    [] as ItemListProps[]
+  );
+  const [selectedItem, setSelectedItem] = useState<ItemListProps>(
+    {} as ItemListProps
   );
 
-  function handleAddItem(item: ItemsProps) {
+  function handleAddItem(item: ItemListProps) {
     setListItems([...listItems, item]);
   }
 
-  function handleRemoveItem(item: ItemsProps) {
+  function handleRemoveItem(item: ItemListProps) {
     const filtered = listItems.filter((list) => list.id !== item.id);
     setListItems(filtered);
   }
 
-  function handleSelectedItem(item: ItemsProps) {
+  function handleSelectedItem(item: ItemListProps) {
     setSelectedItem(item);
   }
 
@@ -56,7 +46,12 @@ export const ItemContextProvider: FC<ItemContextProviderProps> = ({
   );
 };
 
-export const useItemContext = () => {
+/**
+ * @export
+ * @description hook responsable to return the Item Context values
+ * @returns {ItemContextProps | null}
+ */
+export function useItemContext(): ItemContextProps {
   const context = useContext(ItemContext);
 
   if (!context) {
@@ -64,4 +59,4 @@ export const useItemContext = () => {
   }
 
   return context;
-};
+}

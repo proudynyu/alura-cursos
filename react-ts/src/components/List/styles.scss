@@ -92,3 +92,20 @@ aside {
     justify-content: space-between;
   }
 }
+
+.selected {
+  position: relative;
+  border: 1px solid var(--bg-color-purple);
+
+  &::after {
+    position: absolute;
+    content: '';
+    height: 4px;
+    border-radius: 0 0 4px 4px;
+    background-color: var(--bg-color-purple);
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+}
+

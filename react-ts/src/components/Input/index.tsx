@@ -1,5 +1,4 @@
 import {
-  FC,
   ForwardRefRenderFunction,
   forwardRef,
   InputHTMLAttributes,
@@ -11,6 +10,13 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   labelText: string;
 }
 
+/**
+ * @export
+ * @description Custom Input
+ * @param { InputProps }
+ * @param ref React Reference to be used in the form to get the input value
+ * @version 1.0.0
+ */
 const InputComponent: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   { labelText, ...props },
   ref

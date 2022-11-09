@@ -1,12 +1,18 @@
 import { useRef } from "react";
+import { v4 } from 'uuid'
+
 import { useItemContext } from "../../context/item-context";
 import { Button } from "../Button";
 import { Input } from "../Input";
-
 import "./styles.scss";
 
+/**
+ * @export
+ * @description Component that handles the HTML Form to add more tasks
+ * @version 1.0.0
+ */
 export const Form = () => {
-  const { handleAddItem, items } = useItemContext();
+  const { handleAddItem } = useItemContext();
 
   const inputNameRef = useRef<HTMLInputElement>(null);
   const inputTimeRef = useRef<HTMLInputElement>(null);
@@ -20,12 +26,14 @@ export const Form = () => {
     if (!title || !time) return;
 
     handleAddItem({
-      id: items.length + 1,
+      id: v4(),
       time,
       title,
+      completed: false
     });
 
-    console.log(items)
+    inputNameRef.current.value = "";
+    inputTimeRef.current.value = "";
   }
 
   return (
